@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('patient_name');
             $table->string('test_code');
-            $table->enum('priority',['normal','urgent']);
-            $table->enum('status',['created','received','testing','completed','archived']);
+            $table->enum('priority', ['normal', 'urgent']);
+            $table->enum('status', ['created', 'received', 'testing', 'completed', 'archived']);
             $table->dateTime('scheduled_at');
             $table->dateTime('completed_at')->nullable();
-            $table->unsignedBigInteger('created_by');
+            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
